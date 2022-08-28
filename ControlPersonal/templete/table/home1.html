@@ -1,0 +1,143 @@
+{% extends 'master/master1.html' %}
+{% block content %}
+<section class="max-w-7xl mx-auto py-4 px-5">
+                <div class="flex justify-between items-center border-b border-gray-300">
+                    <h1 class="text-2xl font-semibold pt-2 pb-6">Dashboard</h1>
+                </div>
+
+                <!-- STATISTICS -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 py-6">
+                    <div class="bg-white shadow rounded-sm flex justify-between items-center py-3.5 px-3.5">
+                        <div class="space-y-2">
+                            <p class="text-xs text-gray-400 uppercase">Total empleados</p>
+                            <div class="flex items-center space-x-2">
+                                <h1 class="text-xl font-semibold">{{persona.count}}</h1>
+                            </div>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="60" height="60"
+                            style="fill: rgba(0, 0, 0, 1);">
+                            <path
+                                d="M12 2A10.13 10.13 0 0 0 2 12a10 10 0 0 0 4 7.92V20h.1a9.7 9.7 0 0 0 11.8 0h.1v-.08A10 10 0 0 0 22 12 10.13 10.13 0 0 0 12 2zM8.07 18.93A3 3 0 0 1 11 16.57h2a3 3 0 0 1 2.93 2.36 7.75 7.75 0 0 1-7.86 0zm9.54-1.29A5 5 0 0 0 13 14.57h-2a5 5 0 0 0-4.61 3.07A8 8 0 0 1 4 12a8.1 8.1 0 0 1 8-8 8.1 8.1 0 0 1 8 8 8 8 0 0 1-2.39 5.64z">
+                            </path>
+                            <path
+                                d="M12 6a3.91 3.91 0 0 0-4 4 3.91 3.91 0 0 0 4 4 3.91 3.91 0 0 0 4-4 3.91 3.91 0 0 0-4-4zm0 6a1.91 1.91 0 0 1-2-2 1.91 1.91 0 0 1 2-2 1.91 1.91 0 0 1 2 2 1.91 1.91 0 0 1-2 2z">
+                            </path>
+                        </svg>
+                    </div>
+
+                    <div class="bg-white shadow rounded-sm flex justify-between items-center py-3.5 px-3.5">
+                        <div class="space-y-2">
+                            <p class="text-xs text-gray-400 uppercase">Actividades realizadas</p>
+                            <div class="flex items-center space-x-2">
+                                <h1 class="text-xl font-semibold">819</h1>
+                            </div>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24"
+                            style="fill: rgba(0, 0, 0, 1);">
+                            <path
+                                d="M20 3H4c-1.103 0-2 .897-2 2v11c0 1.103.897 2 2 2h4l-1.8 2.4 1.6 1.2 2.7-3.6h3l2.7 3.6 1.6-1.2L16 18h4c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zM4 16V5h16l.001 11H4z">
+                            </path>
+                            <path d="M6 12h4v2H6z"></path>
+                        </svg>
+                    </div>
+
+                    <div class="bg-white shadow rounded-sm flex justify-between items-center py-3.5 px-3.5">
+                        <div class="space-y-2">
+                            <p class="text-xs text-gray-400 uppercase">Total de pago a obreros</p>
+                            <div class="flex items-center space-x-2">
+                                <h1 class="text-xl font-semibold">121</h1>
+                            </div>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24"
+                            style="fill: rgba(0, 0, 0, 1);">
+                            <path
+                                d="M12,15c-1.84,0-2-.86-2-1H8c0,.92.66,2.55,3,2.92V18h2V16.92c2-.34,3-1.63,3-2.92,0-1.12-.52-3-4-3-2,0-2-.63-2-1s.7-1,2-1,1.39.64,1.4,1h2A3,3,0,0,0,13,7.12V6H11V7.09C9,7.42,8,8.71,8,10c0,1.12.52,3,4,3,2,0,2,.68,2,1S13.38,15,12,15Z">
+                            </path>
+                            <path d="M5,2H2V4H4V21a1,1,0,0,0,1,1H19a1,1,0,0,0,1-1V4h2V2H5ZM18,20H6V4H18Z"></path>
+                        </svg>
+                    </div>
+
+
+                </div>
+                <!-- END OF STATISTICS -->
+
+                <!-- TABLE -->
+                <div class="bg-white shadow rounded-sm my-2.5 overflow-x-auto">
+                    <table class="min-w-max w-full table-auto">
+                        <thead>
+                            <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                                <th class="py-3 px-6 text-left">Actividad</th>
+                                <th class="py-3 px-6 text-left">Tranajador </th>
+                                <th class="py-3 px-6 text-center">Fecha inicio</th>
+                                <th class="py-3 px-6 text-center">Fecha final</th>
+                                <th class="py-3 px-6 text-center">Hacienda</th>
+                                <th class="py-3 px-6 text-center">Lote</th>
+                                <th class="py-3 px-6 text-center">Lote</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-600 text-sm">
+                            <tr class="border-b border-gray-200 bg-gray-50 hover:bg-gray-100">
+                                <td class="py-3 px-6 text-left ">
+                                    Fumigar
+                                </td>
+
+                                </td>
+                                <td class="py-3 px-6 text-left">
+                                    <div class="flex items-center">
+
+                                        <span>Gonzalez Rodriguez Jacinto</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-6 text-center">
+                                    06-02-2022
+                                </td>
+                                <td class="py-3 px-6 text-center">
+                                    -
+                                </td>
+                                <td class="py-3 px-6 text-center">
+                                    Mi Banano
+                                </td>
+                                <!-- UTILIZAR PARA ESTADOS -->
+                                <td class="py-3 px-6 text-center">
+                                    <span
+                                        class="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">Active</span>
+                                </td>
+                                <!--ICONO DE EDIT   -->
+                                <td class="py-3 px-6 text-center">
+                                    <div class="flex item-center justify-center">
+                                        <div
+                                            class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110 cursor-pointer cursor-pointer">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                            </svg>
+                                        </div>
+                                        <div
+                                            class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110 cursor-pointer cursor-pointer">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                            </svg>
+                                        </div>
+                                        <div
+                                            class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110 cursor-pointer cursor-pointer">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- END OF TABLE -->
+
+            </section>
+{% endblock content %}

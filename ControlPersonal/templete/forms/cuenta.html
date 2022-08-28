@@ -1,0 +1,109 @@
+{% extends 'master/master.html' %}
+
+{% block content %}
+<!-- Earnings (Monthly) Card Example -->
+<form action="" method="POST" class="form-inline">
+    {%csrf_token%}
+    <div class="col-xl-12 col-md-12 mb-12">
+        {%if object %}
+        <div class="card border-left-warning shadow h-100 py-2">
+            {%else%}
+            <div class="card border-left-success shadow h-100 py-2">
+                {%endif%}
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                {%if object%}Editar {%else%}Nuevo {%endif%}empleado
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            Trabajo-cuenta
+                            <div class="dropdown-divider"></div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <h5 style="color: black; font-weight: bold; font-size:17px; margin-left: 5px;">
+                                        Empleado</h5>
+                                </div>
+                                <div class="col-4">
+                                    <h5 style="color: black; font-weight: bold; font-size:17px; margin-left: 5px;">
+                                        Actividad:</h5>
+                                </div>
+                                <div class="col-4">
+                                    <h5 style="color: black; font-weight: bold; font-size:17px; margin-left: 5px;">
+                                        Producto:</h5>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="input-group">
+                                        {{form.empleado}}
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="input-group">
+                                        {{form.actividad}}
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="input-group">
+                                        {{form.producto_cuenta}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5 style="color: black; font-weight: bold; font-size:17px; margin-left: 5px;">
+                                        Descripcion de la actividad:</h5>
+                                </div>
+                                <div class="col-3">
+                                    <h5 style="color: black; font-weight: bold; font-size:17px; margin-left: 5px;">Costo
+                                        de la actividad:</h5>
+                                </div>
+                                <div class="col-3">
+                                    <h5 style="color: black; font-weight: bold; font-size:17px; margin-left: 5px;">
+                                        Estado:</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <textarea class="form-control" name="descripcion" id="id_descripcion" cols="55"
+                                        rows="5" {%if not object%} placeholder="Descripcion"
+                                        {%endif%}>{%if object%}{{object.descripcion}}{%endif%}</textarea>
+                                </div>
+                                <div class="col-3">
+                                    <div class="input-group">
+                                       {{form.precio}}
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="input-group">
+                                        <label for="id_estado"></label>
+                                        {{form.estado}}
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="dropdown-divider"></div>
+                            <div class="row">
+                                <div class="col">
+                                    <button type="submit" class="btn btn-danger"><span
+                                            class="fa fa-save"></span>Guardar</button>
+                                    <a href="{% url 'ControlPersonal:lista_cuenta' %}" class="btn btn-success"><span
+                                            class="fa fa-undo"></span>Cancelar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock content %}
+
+{% block js %}
+{% endblock js %}

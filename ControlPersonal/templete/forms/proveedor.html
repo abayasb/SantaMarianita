@@ -1,0 +1,138 @@
+{% extends 'master/master.html' %}
+
+{% block content %}
+<!-- Earnings (Monthly) Card Example -->
+<form action="" method="POST" class="form-inline">
+    {%csrf_token%}
+    <div class="col-xl-10 col-md-10 mb-10">
+        {%if object %}
+        <div class="card border-left-warning shadow h-100 py-2">
+            {%else%}
+            <div class="card border-left-success shadow h-100 py-2">
+                {%endif%}
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                {%if object%}Editar{%else%}Nuevo{%endif%}proovedor
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <h5 style="color: black; font-weight: bold; font-size:17px; margin-left: 5px;">R.U.C:</h5>
+
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="input-group">
+                                        <input type="text" name="ruc" id="id_ruc" class="form-control" maxlength="15"
+                                            required placeholder="ruc" value="{%if object%} {{object.ruc}}{%endif%}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="row">
+                                <div class="col-3">
+                                    <h5 style="color: black; font-weight: bold; font-size:17px; margin-left: 5px;">
+                                        Proovedor:</h5>
+                                </div>
+                                <div class="col-9">
+                                    <h5 style="color: black; font-weight: bold; font-size:17px; margin-left: 5px;">
+                                        Correo:</h5>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="input-group">
+                                        <input type="text" name="descripcion" id="id_descripcion" class="form-control"
+                                            maxlength="100" required placeholder="proovedor"
+                                            value="{%if object%} {{object.descripcion}}{%endif%}">
+                                    </div>
+                                </div>
+
+                                <div class="col-9">
+                                    <div class="input-group">
+                                        <input type="text" name="email" id="id_email" class="form-control"
+                                            maxlength="150" required placeholder="email"
+                                            value="{%if object%} {{object.email}}{%endif%}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+
+                            <div class="row">
+                                <div class="col-5">
+                                    <h5 style="color: black; font-weight: bold; font-size:17px; margin-left: 5px;">
+                                        Direccion:</h5>
+                                </div>
+                                <div class="col-3">
+                                    <h5 style="color: black; font-weight: bold; font-size:17px; margin-left: 5px;">
+                                        Telefono:</h5>
+                                </div>
+                                <div class="col-3">
+                                    <h5 style="color: black; font-weight: bold; font-size:17px; margin-left: 5px;">
+                                        Contacto:</h5>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-5">
+                                    <div class="input-group">
+                                        <input type="text" name="direccion" id="id_direccion" class="form-control"
+                                            maxlength="250" required placeholder="Direccion"
+                                            value="{%if object%} {{object.direccion}}{%endif%}">
+                                    </div>
+                                </div>
+
+                                <div class="col-3">
+                                    <div class="input-group">
+                                        <input type="text" name="telefono" id="id_telefono" class="form-control"
+                                            maxlength="10" required placeholder="Telefono"
+                                            value="{%if object%} {{object.telefono}}{%endif%}">
+                                    </div>
+                                </div>
+
+                                <div class="col-3">
+                                    <div class="input-group">
+                                        <input type="text" name="contacto" id="id_contacto" class="form-control"
+                                            maxlength="10" required placeholder="contacto"
+                                            value="{%if object%} {{object.contacto}}{%endif%}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+
+                            <div class="row">
+                                <div class="col-2">
+                                    
+                                        <h5 style="color: black; font-weight: bold; font-size:17px; margin-left: 5px;">Estado:</h5>
+                                   
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <label for="id_estado"></label>
+                                        {{form.estado}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="row">
+                                <div class="col">
+                                    <button type="submit" class="btn btn-danger"><span
+                                            class="fa fa-save"></span>Guardar</button>
+                                    <a href="{% url 'ControlPersonal:lista_proovedor' %}" class="btn btn-success"><span
+                                            class="fa fa-undo"></span>Cancelar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock content %}
+
+{% block js %}
+{% endblock js %}

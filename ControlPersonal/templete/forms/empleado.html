@@ -1,0 +1,107 @@
+{% extends 'master/master.html' %}
+
+{% block content %}
+<!-- Earnings (Monthly) Card Example -->
+<form action="" method="POST" class="form-inline">
+    {%csrf_token%}
+    <div class="col-xl-10 col-md-10 mb-10">
+        {%if object %}
+        <div class="card border-left-warning shadow h-100 py-2">
+            {%else%}
+            <div class="card border-left-success shadow h-100 py-2">
+                {%endif%}
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                {%if object%}Editar {%else%}Nuevo {%endif%}empleado
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            Empleado
+                            
+                            <div class="row">
+                                <div class="col-4">
+                                    <h5 style="color: black; font-weight: bold; font-size:17px; margin-left: 5px;">Cedula:</h5>
+                                </div>
+                                <div class="col-4">
+                                    <h5 style="color: black; font-weight: bold; font-size:17px; margin-left: 5px;">Apellidos:</h5>
+                                </div>
+                                <div class="col-4">
+                                    <h5 style="color: black; font-weight: bold; font-size:17px; margin-left: 5px;">Nombres:</h5>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="input-group">
+                                        <input type="text" name="dni" id="id_dni" placeholder="Cedula"
+                                            class="form-control" value="{%if object%} {{object.dni}} {%endif%}" maxlength="10">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="input-group">
+                                        <input type="text" name="apellido" id="id_apellido"
+                                            placeholder="Apellidos" class="form-control"
+                                            value="{%if object%} {{object.apellido}} {%endif%}">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="input-group">
+                                        <input type="text" name="nombre" id="id_nombre" placeholder="Nombres"
+                                            class="form-control" value="{%if object%} {{object.nombre}} {%endif%}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <h5 style="color: black; font-weight: bold; font-size:17px; margin-left: 5px;">Rol:</h5>
+                                </div>
+                                <div class="col-4">
+                                    <h5 style="color: black; font-weight: bold; font-size:17px; margin-left: 5px;">Telefono:</h5>
+                                </div>
+                                <div class="col-4">
+                                    <h5 style="color: black; font-weight: bold; font-size:17px; margin-left: 5px;">Correo:</h5>
+                                </div>
+                            </div>
+                          
+                            
+                            <div class="dropdown-divider"></div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="input-group"> {{form.rol}}</div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="input-group"> {{form.telefono}}</div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="input-group"> {{form.email}}</div>
+                               </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="input-group"><label  style="color: black; font-weight: bold; font-size:17px; margin-left: 5px;">Estado del empleado</label>{{form.estado}}</div>
+                                </div>
+                                
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="row">
+                                <div class="col">
+                                    <button type="submit" class="btn btn-danger"><span
+                                            class="fa fa-save"></span>Guardar</button>
+                                    <a href="{% url 'ControlPersonal:lista_empleado' %}" class="btn btn-success"><span
+                                            class="fa fa-undo"></span>Cancelar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock content %}
+
+{% block js %}
+{% endblock js %}

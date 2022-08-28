@@ -1,0 +1,101 @@
+{% extends 'master/master.html' %}
+
+{% block content %}
+<!-- Earnings (Monthly) Card Example -->
+<form method="POST" class="form-inline" action="">
+    {%csrf_token%}
+    <div class="col-xl-10 col-md-10 mb-10">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Nuevo producto
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="row">
+                            <div class="col-4">
+                                <h5 style="color: black; font-weight: bold; font-size:17px; margin-left: 5px;">Codigo
+                                    del producto:</h5>
+
+                            </div>
+                            <div class="col-4">
+                                <h5 style="color: black; font-weight: bold; font-size:17px; margin-left: 5px;">Producto:
+                                </h5>
+                            </div>
+                            <div class="col-4">
+                                <h5 style="color: black; font-weight: bold; font-size:17px; margin-left: 5px;">
+                                    Proveedor:</h5>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <input type="text" name="codigo" id="id_codigo" placeholder="CODIGO" maxlength="8"
+                                        class="form-control" value="{%if object%} {{object.codigo}} {%endif%}">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <input type="text" name="descripcion" id="id_descripcion" placeholder="PRODUCTO"
+                                        maxlength="255" class="form-control"
+                                        value="{%if object%} {{object.descripcion}} {%endif%}">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group">
+                                    {{form.proveedor}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <h5 style="color: black; font-weight: bold; font-size:17px; margin-left: 5px;">Cantidad:
+                                </h5>
+                            </div>
+                            <div class="col-6">
+                                <h5 style="color: black; font-weight: bold; font-size:17px; margin-left: 5px;">Precio:
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="input-group">
+                                    <input type="number" name="cantidad" id="id_cantidad" placeholder="CANTIDAD"
+                                        class="form-control" value="{%if object%} {{object.descripcion}} {%endif%}">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="input-group">
+                                    <input type="number" name="precio_unitario" id="id_precio_unitario" placeholder="PRECIO"
+                                        class="form-control" value="{%if object%} {{object.precio_unitario}} {%endif%}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dropdown-divider"></div>
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" class="btn btn-danger"><span
+                                        class="fa fa-save"></span>Guardar</button>
+                                <a href="{% url 'ControlPersonal:lista_producto'%}" class="btn btn-success"><span
+                                        class="fa fa-undo"></span>Cancelar</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>
+{% endblock content %}
+
+{% block js %}
+<script>
+
+</script>
+{% endblock js %}

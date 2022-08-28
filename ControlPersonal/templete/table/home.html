@@ -1,0 +1,126 @@
+{% extends 'master/master.html' %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Numero de empleados</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{empleado.count}}</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-calendar fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-success shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Cantidad de producto en almacen
+              </div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{cantidad_producto}}</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-info shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Egresos por pago de empleados</div>
+              <div class="row no-gutters align-items-center">
+                <div class="col-auto">
+                  <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{egreso_empleado}}$</div>
+                </div>
+
+              </div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pending Requests Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-warning shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Egresos por productos</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{egreso_producto}}$</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-comments fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <h3>Actividades Pendiente</h3>
+  </div>
+
+  <div class="row">
+    <div class="card-body">
+      {% if not object %}
+      No existe trabajos Pendientes
+      {%else%}
+      <table class="table table-striper table-hover">
+        <thead>
+          <th class="text-bold">Fecha</th>
+          <th class="text-bold">Cedula</th>
+          <th class="text-bold">Apellido</th>
+          <th class="text-bold">Nombre</th>
+          <th class="text-bold">Hora de entrada</th>
+          <th class="text-bold">Status</th>
+          <th class="text-bold">Hora de salida</th>
+
+        </thead>
+        <tbody>
+          {% for asistencia in object %}
+          <tr>
+            <td>{{asistencia.date}}</td>
+            <td>{{asistencia.empleado.dni}}</td>
+            <td>{{asistencia.empleado.apellido}}</td>
+            <td>{{asistencia.empleado.nombre}}</td>
+            <td>{{asistencia.time_in}}</td>
+            <td>
+              {% if asistencia.status %}
+              <p>Asistio</p>
+              {% else %}
+              <p>Atrazo</p>
+              {% endif %}
+              
+            </td>
+            <td>{{asistencia.time_out}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock content %}
