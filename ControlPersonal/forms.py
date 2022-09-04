@@ -60,6 +60,18 @@ class ActividadForm(forms.ModelForm):
         fields = '__all__'
         widget = {'actividad': forms.TextInput}
 
+class AsistenciaForm(forms.ModelForm):
+    class Meta:
+        model = Asistencia
+        fields = [
+            'empleado'
+        ]
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in iter(self.fields):
+            self.fields[field].widget.attrs.update({
+                'class': 'form-control'
+            })
 
 class CuentaForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):

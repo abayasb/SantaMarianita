@@ -48,6 +48,7 @@ class EmpleadoListView(LoginRequiredMixin,generic.ListView):
     context_object_name = 'object'
     login_url = "ControlPersonal:login"
 
+
 class EmpleadoCreateView(LoginRequiredMixin, generic.CreateView):
     model = Persona
     template_name = "forms/empleado.html"
@@ -71,6 +72,7 @@ class EmpleadoUpdateView(LoginRequiredMixin, generic.UpdateView):
         form.instance.um = self.request.user.id
         return super().form_valid(form)
 
+@login_required(login_url='/login/')
 def inavilitarEmpleado(request, id):
     template_name = 'inactivar/empleado.html'
     empleado = Persona.objects.filter(pk=id).first()
@@ -240,8 +242,21 @@ class ActividadUpdateView(LoginRequiredMixin,generic.UpdateView):
 
 class AsistenciaListView(LoginRequiredMixin, generic.ListView):
     model = Asistencia
-    template_name = "table/home.html"
+    template_name = "table/asistencia.html"
     context_object_name = 'object'
     login_url = 'ControlPersonal:login'
    
-    
+
+class RegistroAsistencia(LoginRequiredMixin,generic.CreateView):
+    model = Asistencia
+    form_class = AsistenciaForm
+    login_url = "ControlPersonal:login"
+    success_url = reverse_lazy("ControlPersonal:lista_cuenta")
+    def post(self, request, *args, **kwargs):
+        a = request.POST['cedula']
+        empleado = Persona.objects.filter(dni=a).first()
+        asistencia = Asistencia(empleado=empleado)
+        asistencia.save()
+        return HttpResponse()
+
+       

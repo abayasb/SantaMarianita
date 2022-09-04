@@ -1,0 +1,41 @@
+
+.contenedor{
+	width: 100%;
+	max-width: 900px;
+	margin: auto;
+	margin-top: 15%;
+}
+
+.tiempo {
+	width: 40%;
+	margin: auto;
+}
+
+.tiempo p {
+	display: inline-block;
+	line-height: 1em;
+}
+
+.fecha {
+	font-size: 1.5em;
+	margin-bottom: 0.3124rem;
+	background: rgba(255, 255, 255, .5);
+	padding: 20px;
+	width: 100%;
+}
+
+.reloj {
+	width: 100%;
+	padding: 20px;
+	font-size: 4em;
+	background: rgba(255, 255, 255, .5);
+}
+
+.reloj .caja{
+	display: inline-block;
+}
+
+.reloj .segundos, .reloj .ampm {
+	font-size: 0.5em;
+	display: block;
+}

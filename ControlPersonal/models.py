@@ -1,5 +1,5 @@
-import datetime
-from datetime import datetime
+
+from datetime import datetime, timedelta
 from django.db import models
 
 from django.db.models import Model
@@ -26,9 +26,9 @@ class Persona(models.Model):
     fecha_registro = models.DateField(auto_now_add=True,null=True)
     rol = models.ForeignKey(Rol, models.CASCADE)
     estado = models.BooleanField(verbose_name='Activo',default=True)
-    def __str__(self):
-       return "{0}".format(self.apellido)
-    
+
+
+
     def save(self):
         self.nombre = self.nombre.upper()
         self.apellido = self.apellido.upper()
@@ -110,24 +110,16 @@ class Cuenta(models.Model):
 from datetime import timedelta
 class Asistencia(models.Model):
     empleado = models.ForeignKey(Persona, on_delete=models.CASCADE)
-    date = models.DateField(("Fecha"), auto_now=False, auto_now_add=True)
-    time_in = models.TimeField(("Hora entrada"), auto_now=False, auto_now_add=True, blank = True)
+    date = models.DateField(("Fecha"), auto_now=True, auto_now_add=False)
+    time_in = models.TimeField(("Hora entrada"), auto_now=True, auto_now_add=False, blank = True)
     status = models.BooleanField(("Estado"), default = True)
     time_out = models.TimeField(("Hora salida"), auto_now=True, blank = True)
     def __str__(self):
-        return "{0}".format(self.date)
+        return "{0}".format(self.id)
 
-    def save(self):
-        time = datetime.datetime.time(7,00,00)
-        current = datetime.now()
-        print("This is the current date and time :- ", current)
-
-        #print("{0} ==> {1} ==> {2}".format(self.time_in,time))
-        if self.time_in < time:
-            self.status = True
-        else:
-            self.status = False
-        super(Asistencia, self).save()
+    def save(self,*args, **kwargs):
+        return super(Asistencia, self).save()
+        
     class Meta:
         verbose_name_plural = "Asistencias"
     
