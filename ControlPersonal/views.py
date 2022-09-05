@@ -263,14 +263,12 @@ class RegistroAsistencia(LoginRequiredMixin,generic.CreateView):
     login_url = "ControlPersonal:login"
     success_url = reverse_lazy("ControlPersonal:lista_cuenta")
     def post(self, request, *args, **kwargs):
-
+        try:
             timedata = timedatas.now()
             a = request.POST['cedula']
             empleado = Persona.objects.filter(dni=a).first()
             if not empleado:
                 return HttpResponse("Empleado no encontrado")
-            print("aqui1")
-
             if timedata.hour>22:
                 asistencia = Asistencia(empleado=empleado)
                 asistencia.time_out = datetime.time(timedata.hour,timedata.minute,timedata.second)
@@ -284,6 +282,6 @@ class RegistroAsistencia(LoginRequiredMixin,generic.CreateView):
                 'mensaje':"Registrado"
             }
             return render(request, 'table/asistencia.html',context)
-
-
-       
+        except:
+            pass
+            return HttpResponse("Hubo un error en el sistema")
