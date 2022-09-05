@@ -268,7 +268,7 @@ class RegistroAsistencia(LoginRequiredMixin,generic.CreateView):
             a = request.POST['cedula']
             empleado = Persona.objects.filter(dni=a).first()
             if not empleado:
-                return HttpResponse("Empleado no encontrado")
+                return HttpResponse("Empleado no encontrado por el momento")
             print("aqui1")
 
             if timedata.hour>22:
