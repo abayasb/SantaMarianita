@@ -35,9 +35,7 @@
                 </div>
             </div>
         </div>
-
         <script src="{% static 'js/reloj.js'%}"></script>
-
         <form action="{% url 'ControlPersonal:registro_asistencia'%}" method="post">
             {% csrf_token %}
             <div class="row">
@@ -49,22 +47,6 @@
                 </div>
             </div>
         </form>
-
-        <table class="table table-striper table-hover">
-            <thead>
-            <th>Empleado</th>
-            <th>Hora de ingreso</th>
-            <th>Estado</th>
-            </thead>
-            <tbody>
-            {% for empleado in object %}
-              <tr>
-                  <th></th>
-              </tr>
-            {%endfor%}
-            </tbody>
-        </table>
-
     </div>
 </div>
 

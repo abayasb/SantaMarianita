@@ -113,7 +113,8 @@ class Asistencia(models.Model):
     date = models.DateField(("Fecha"), auto_now=True, auto_now_add=False)
     time_in = models.TimeField(("Hora entrada"), auto_now=True, auto_now_add=False, blank = True)
     status = models.BooleanField(("Estado"), default = True)
-    time_out = models.TimeField(("Hora salida"), auto_now=True, blank = True)
+    time_out = models.TimeField(("Hora salida"), blank = True)
+
     def __str__(self):
         return "{0}".format(self.id)
 

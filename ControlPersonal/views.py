@@ -4,6 +4,7 @@ from django.db.models import Sum
 from django.http import HttpResponse
 from django.shortcuts import render
 
+
 # Create your views here.
 from django.urls import reverse_lazy
 from django.views import generic
@@ -240,6 +241,12 @@ class ActividadUpdateView(LoginRequiredMixin,generic.UpdateView):
         form.instance.um = self.request.user.id
         return super(ActividadUpdateView, self).form_valid(form)
 
+class ListAsistenciaListView(LoginRequiredMixin, generic.ListView):
+    model = Asistencia
+    template_name = "table/table-asistencia.html"
+    context_object_name = 'object'
+    login_url = 'ControlPersonal:login'
+
 class AsistenciaListView(LoginRequiredMixin, generic.ListView):
     model = Asistencia
     template_name = "table/asistencia.html"
@@ -247,16 +254,36 @@ class AsistenciaListView(LoginRequiredMixin, generic.ListView):
     login_url = 'ControlPersonal:login'
    
 
+import datetime
+from datetime import datetime as timedatas
+
 class RegistroAsistencia(LoginRequiredMixin,generic.CreateView):
     model = Asistencia
     form_class = AsistenciaForm
     login_url = "ControlPersonal:login"
     success_url = reverse_lazy("ControlPersonal:lista_cuenta")
     def post(self, request, *args, **kwargs):
-        a = request.POST['cedula']
-        empleado = Persona.objects.filter(dni=a).first()
-        asistencia = Asistencia(empleado=empleado)
-        asistencia.save()
-        return HttpResponse()
+
+            timedata = timedatas.now()
+            a = request.POST['cedula']
+            empleado = Persona.objects.filter(dni=a).first()
+            if not empleado:
+                return HttpResponse("Empleado no encontrado")
+            print("aqui1")
+
+            if timedata.hour>22:
+                asistencia = Asistencia(empleado=empleado)
+                asistencia.time_out = datetime.time(timedata.hour,timedata.minute,timedata.second)
+                asistencia.save()
+            else:
+                asistencia = Asistencia(empleado=empleado)
+                asistencia.time_out = datetime.time(00,00,1)
+                asistencia.save()
+
+            context = {
+                'mensaje':"Registrado"
+            }
+            return render(request, 'table/asistencia.html',context)
+
 
        
